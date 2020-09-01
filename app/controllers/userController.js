@@ -23,7 +23,7 @@ userController.intiateTransaction = async (payload) => {
   if (!userInfo) {
     throw HELPERS.responseHelper.createErrorResponse(MESSAGES.USER_NOT_FOUND, ERROR_TYPES.BAD_REQUEST);
   }
-  let response = await cashWithdraw(denominations, payload.amount, userInfo.balance, payload.preference);
+  let response = await userController.cashWithdraw(denominations, payload.amount, userInfo.balance, payload.preference);
   if (response.isError) {
     throw HELPERS.responseHelper.createErrorResponse(response.msg, response.responseType);
   }
